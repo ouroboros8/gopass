@@ -344,3 +344,23 @@ func IsVerbose(ctx context.Context) bool {
 	}
 	return bv
 }
+
+// WithNoUnclipNotify returns a context with the value for NoUnclipNotify set
+func WithUnclipNotify(ctx context.Context, verbose bool) context.Context {
+	return context.WithValue(ctx, ctxNoUnclipNotify, verbose)
+}
+
+// HasNoUnclipNotify returns true if a value for NoUnclipNotify has been set in this context
+func HasUnclipNotify(ctx context.Context) bool {
+	_, ok := ctx.Value(ctxNoUnclipNotify).(bool)
+	return ok
+}
+
+// IsNoUnclipNotify returns the value of NoUnclipNotify or the default (false)
+func IsUnclipNotify(ctx context.Context) bool {
+	bv, ok := ctx.Value(ctxNoUnclipNotify).(bool)
+	if !ok {
+		return true
+	}
+	return bv
+}
